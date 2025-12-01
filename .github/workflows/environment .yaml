@@ -1,0 +1,16 @@
+name: Print Custom Message
+
+on:
+  workflow_dispatch:
+
+jobs:
+  print-message:
+    runs-on: ubuntu-latest
+    env:
+      SALUDO: "Hola"
+      NOMBRE: "Mundo"
+      MENSAJE: "Desde GitHub Actions!"
+    steps:
+      - name: Mostrar mensaje
+        run: |
+          echo "${SALUDO}, ${NOMBRE}. ${MENSAJE}"

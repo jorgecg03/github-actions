@@ -1,0 +1,15 @@
+{
+  "name": "js_app",
+  "version": "1.0.0",
+  "description": "Aplicación JavaScript con interfaz web, testing y linting",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "echo 'Abre index.html en tu navegador'",
+    "test": "jest",
+    "lint": "eslint src/*.js"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "eslint": "^8.0.0"
+  }
+}

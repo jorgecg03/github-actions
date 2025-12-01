@@ -6,7 +6,8 @@
   "scripts": {
     "start": "echo 'Abre index.html en tu navegador'",
     "test": "jest",
-    "lint": "eslint src/*.js"
+    "lint": "eslint src/*.js",
+    "build": "vite build"
   },
   "devDependencies": {
     "jest": "^29.0.0",

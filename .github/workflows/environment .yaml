@@ -9,8 +9,8 @@ jobs:
     env:
       SALUDO: "Hola"
       NOMBRE: "Mundo"
-      MENSAJE: "Desde GitHub Actions!"
+      MENSAJE: "desde GitHub Actions!"
     steps:
       - name: Mostrar mensaje
         run: |
-          echo "${SALUDO}, ${NOMBRE}. ${MENSAJE}"
+          echo "${SALUDO}, ${NOMBRE} ${MENSAJE}"

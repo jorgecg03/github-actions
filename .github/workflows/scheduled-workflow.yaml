@@ -31,7 +31,7 @@ jobs:
 
               const{ data: commit} = await github.rest.repos.getCommit({owner,repo,ref: branch.name});
 
-              const commitDate = new Date(commit.data.commit.commiter.date).getTime();
+              const commitDate = new Date(commit.data.commiter.date).getTime();
 
               if(nowMs - commitDate >= ageMs){
                 github.rest.git.deleteRef({owner,repo,ref: `heads/${branch.name}`});

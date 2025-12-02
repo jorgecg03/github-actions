@@ -17,7 +17,7 @@ jobs:
             const DAYS_OLD = 30;
             
             const nowMs = Date.now();
-            const ageMs = 0;
+            const ageMs = DAYS_OLD * 24 * 60 * 60 * 1000;
 
           
             const {owner,repo} = context.repo;
@@ -33,7 +33,7 @@ jobs:
 
               const commitDate = new Date(commitData.commit.committer.date).getTime();
 
-              if(nowMs - commitDate >= ageMs && !branch.protected){
+              if(nowMs - commitDate >= ageMs || !branch.protected){
                 github.rest.git.deleteRef({owner,repo,ref: `heads/${branch.name}`});
                 core.info(`🗑️ Eliminada: ${branch.name}`);
               } else {

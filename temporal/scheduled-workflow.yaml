@@ -12,7 +12,6 @@ jobs:
       - name: Script de borrado
         uses: actions/github-script@v7
         with:
-          # github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const DAYS_OLD = 30;
             

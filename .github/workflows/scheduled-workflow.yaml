@@ -1,0 +1,43 @@
+name: Scheduled Workflow
+on:
+  schedule:
+    - cron: "0 0 * * 0"
+  workflow_dispatch:
+jobs:
+  clean-branches:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Script de borrado
+        uses: actions/github-script@v7
+        with:
+          # github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const DAYS_OLD = 30;
+            
+            const nowMs = Date.now();
+            const ageMs = DAYS_OLD * 24 * 60 * 60 * 1000;
+
+          
+            const {owner,repo} = context.repo;
+            const {data: repoData} = await github.rest.repos.get({owner, repo});
+            const defaultBranch = repoData.default_branch;
+
+            const branches = await github.paginate(github.rest.repos.listBranches,{owner,repo,per_page: 100});
+
+            for (const branch of branches) {
+              if(branch.name == defaultBranch) continue;
+
+              const{ data: commit} = await github.rest.repos.getCommit({owner,repo,ref: branch.name});
+
+              const commitDate = new Date(commit.data.commit.commiter.date).getTime();
+
+              if(nowMs - commitDate >= ageMs){
+                github.rest.git.deleteRef({owner,repo,ref: `heads/${branch.name}`});
+                core.info(`🗑️ Eliminada: ${branch.name}`);
+              } else {
+                core.info(`Mantener: ${branch.name}`);
+              }
+
+            }

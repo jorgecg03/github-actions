@@ -1,0 +1,12 @@
+name: "Slack Notification"
+description: "Send a notification to Slack"
+inputs:
+  message:
+    description: "The message that is going to be sent to the slack channel"
+    required: true
+  slack-webhook:
+    description: "The webhook url of slack that is going to be used to send the message"
+    required: true
+runs:
+  using: "node18"
+  main: "main.js"

@@ -12,6 +12,6 @@ jobs:
       - name: Send Slack Notification
         uses: ./.github/actions/slack-notification
         with:
-          message: "New push to main branch"
+          message: "New push to the main branch"
           slack-webhook: ${{ secrets.SLACK_WEBHOOK }}
 

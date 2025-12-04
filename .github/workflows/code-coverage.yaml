@@ -1,0 +1,23 @@
+name: Code Coverage Reporting
+on: 
+  push:
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: code checkout
+        uses: actions/checkout@v4
+      - name: install dependencies
+        run: npm install
+      - name: test 
+        run: npm test -- --coverage
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/
+      - name: Show coverage percentage
+        run: |
+          COVERAGE=$(jq -r '.total.lines.pct' coverage/coverage-summary.json)
+          echo "Code Coverage: ${COVERAGE}%"

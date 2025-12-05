@@ -1,5 +1,5 @@
 function mostrarMensaje() {
-    document.getElementById("mensaje").innerText = "¡Botón clickeado1!";
+    document.getElementById("mensaje").innerText = "¡Botón clickeado!";
 }
 
 module.exports = { mostrarMensaje };

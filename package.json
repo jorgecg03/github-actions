@@ -1,14 +1,13 @@
 {
-  "name": "js_app",
-  "version": "1.0.0",
-  "description": "Aplicación JavaScript con interfaz web, testing y linting",
-  "main": "src/app.js",
+  "name": "monorepo",
+  "private": true,
+  "version": "0.0.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "test": "jest",
-    "lint": "eslint src/*.js"
-  },
-  "devDependencies": {
-    "jest": "^29.0.0",
-    "eslint": "^8.0.0"
+    "test": "npm run test -ws",
+    "lint": "npm run lint -ws"
   }
 }

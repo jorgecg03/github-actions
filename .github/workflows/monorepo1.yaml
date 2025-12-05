@@ -1,7 +1,11 @@
 name: Monorepo Management 1
 on:
   push:
+    paths:
+      - 'apps/**'
   pull_request:
+    paths:
+      - 'apps/**'
 jobs:
   detect:
     runs-on: ubuntu-latest

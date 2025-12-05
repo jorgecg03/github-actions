@@ -32,4 +32,4 @@ jobs:
       - name: install dependencies
         run: npm install
       - name: test
-        run: npm test -w "*/${{ matrix.project }}"
+        run: npm test -w "apps/${{ matrix.project }}"

@@ -6,7 +6,7 @@ jobs:
   detect:
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.changed.outputs.proyects}}
+      matrix: ${{ steps.changed.outputs.projects}}
     steps:
       - name: code checkout
         uses: actions/checkout@v4

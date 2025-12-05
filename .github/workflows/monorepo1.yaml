@@ -1,0 +1,30 @@
+name: Monorepo Management 1
+on:
+  push:
+  pull_request:
+jobs:
+  detect:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.changed.outputs.proyects}}
+    steps:
+      - name: code checkout
+        uses: actions/checkout@v4
+      - name: get changed proyects
+        id: changed
+        run: |
+          projects=$(git diff HEAD^ HEAD --name-only | grep apps | cut -d '/' -f2 | uniq | jq -R | jq -s)
+          echo "projects=$projects" >> "$GITHUB_OUTPUT"
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        project: ${{ fromJson(needs.detect.outputs.projects)}}
+    steps:
+      - name: code checkout
+        uses: actions/checkout@v4
+      - name: install dependencies
+        run: npm install
+      - name: test
+        run: npm test -w "*/${{ matrix.project }}"

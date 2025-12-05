@@ -10,10 +10,12 @@ jobs:
     steps:
       - name: code checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth:
       - name: get changed proyects
         id: changed
         run: |
-          projects=$(git diff HEAD^ HEAD --name-only | grep apps | cut -d '/' -f2 | uniq | jq -R | jq -s)
+          projects=$(git diff HEAD^ HEAD --name-only | grep apps | cut -d '/' -f2 | sort -u | jq -R | jq -s)
           echo $projects
           echo "projects=$projects" >> "$GITHUB_OUTPUT"
 

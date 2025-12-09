@@ -1,8 +1,8 @@
 name: Monorepo Management 2
 on:
   push:
-    paths:
-      - 'apps/**'
+    # paths:
+    #   - 'apps/**'
   pull_request:
     paths:
       - 'apps/**'
@@ -23,7 +23,7 @@ jobs:
               - 'apps/app1/**'
             app2:
               - 'apps/app2/**'
-              
+
   test:
     needs: detect
     runs-on: ubuntu-latest

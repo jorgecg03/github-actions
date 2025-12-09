@@ -23,7 +23,6 @@ jobs:
               - 'apps/app1/**'
             app2:
               - 'apps/app2/**'
-   
   test:
     needs: detect
     runs-on: ubuntu-latest

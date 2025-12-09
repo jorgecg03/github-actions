@@ -18,8 +18,7 @@ jobs:
         uses: dorny/paths-filter@v3
         id: changes
         with:
-          list-files: json
-          filter: |
+          filters: |
            apps:
             - 'apps/**'
   test:

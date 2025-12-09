@@ -25,17 +25,13 @@ jobs:
             git fetch origin "$BASE" "$HEAD" --quiet
             DIFF_RANGE="origin/${BASE}...origin/${HEAD}"
           else
-            
-            if git rev-parse HEAD^ >/dev/null 2>&1; then
               DIFF_RANGE="HEAD^...HEAD"
-            else
-              DIFF_RANGE="$(git hash-object -t tree /dev/null)...HEAD"
-            fi
           fi
 
           echo "Usando diff: $DIFF_RANGE"
 
           files=$(git diff --name-only "$DIFF_RANGE" -- 'apps/**')
+          echo $files
           projects=$(echo "$files" | cut -d '/' -f2 | sort -u | jq -R | jq -s | jq -c)
 
           echo $projects

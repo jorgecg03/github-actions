@@ -22,7 +22,7 @@ jobs:
           path: |
             ~/.npm
             node_modules
-          key: npm-${{ runner.os }}-node${{ matrix.node }}-${{ hashFiles('**/package-lock.json') }}
+          key: npm-${{ runner.os }}-node${{ matrix.node-version }}-${{ hashFiles('**/package-lock.json') }}
  
       - name: Install dependencies
         run: npm install

@@ -21,6 +21,8 @@ jobs:
           filters: |
            apps:
             - 'apps/**'
+      - name: info
+        run: echo {{ steps.changes.outputs.changes}}
   test:
     needs: detect
     runs-on: ubuntu-latest

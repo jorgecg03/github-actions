@@ -1,0 +1,39 @@
+name: Monorepo Management 2
+on:
+  push:
+    paths:
+      - 'apps/**'
+  pull_request:
+    paths:
+      - 'apps/**'
+jobs:
+  detect:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.changes.outputs.changes}}
+    steps:
+      - name: code checkout
+        uses: actions/checkout@v4
+      - name: filter
+        uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          list-files: json
+          filter: |
+           apps:
+            - 'apps/**'
+  test:
+    needs: detect
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        project: ${{ fromJson(needs.detect.outputs.matrix)}}
+    steps:
+      - name: code checkout
+        uses: actions/checkout@v4
+      - name: install dependencies
+        run: npm install
+      - name: test
+        run: npm test -w "apps/${{ matrix.project }}"
+
+

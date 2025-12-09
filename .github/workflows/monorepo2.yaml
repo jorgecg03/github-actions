@@ -22,7 +22,7 @@ jobs:
            apps:
             - 'apps/**'
       - name: info
-        run: echo {{ steps.changes.outputs.changes}}
+        run: echo "${{ steps.changes.outputs.changes}}"
   test:
     needs: detect
     runs-on: ubuntu-latest

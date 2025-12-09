@@ -19,10 +19,11 @@ jobs:
         id: changes
         with:
           filters: |
-           apps:
-            - 'apps/**'
-      - name: info
-        run: echo "${{ steps.changes.outputs.changes}}"
+            app1:
+              - 'apps/app1/**'
+            app2:
+              - 'apps/app2/**'
+   
   test:
     needs: detect
     runs-on: ubuntu-latest

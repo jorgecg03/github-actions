@@ -14,13 +14,10 @@ jobs:
     steps:
       - name: code checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - name: filter
         uses: dorny/paths-filter@v3
         id: changes
         with:
-          base: HEAD^
           filters: |
             app1:
               - 'apps/app1/**'

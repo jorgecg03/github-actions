@@ -19,7 +19,7 @@ jobs:
         id: changes
         with:
           base: ${{ github.event.before }}
-          head: ${{ github.sha }
+          head: ${{ github.sha }}
           filters: |
             app1:
               - 'apps/app1/**'

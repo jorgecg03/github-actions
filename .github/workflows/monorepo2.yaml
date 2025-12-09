@@ -1,8 +1,8 @@
 name: Monorepo Management 2
 on:
   push:
-    # paths:
-    #   - 'apps/**'
+    paths:
+      - 'apps/**'
   pull_request:
     paths:
       - 'apps/**'
@@ -19,7 +19,7 @@ jobs:
         id: changes
         with:
           base: ${{ github.event.before }}
-          head: ${{ github.sha }}
+          ref: ${{ github.sha }}
           filters: |
             app1:
               - 'apps/app1/**'

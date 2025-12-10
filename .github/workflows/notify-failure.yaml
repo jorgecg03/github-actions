@@ -26,8 +26,10 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ always() && needs.build.result == 'failure' }}
     steps:
+        - name: Checkout code
+          uses: actions/checkout@v3
         - name: Notify on failure
-          uses: ./actions/slack-notification
+          uses: ./.github/actions/slack-notification
           with:
             message: "Build fallido."
             slack-webhook: ${{ secrets.SLACK_WEBHOOK }}

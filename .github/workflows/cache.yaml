@@ -1,7 +1,6 @@
 name: Dependency Caching
 on:
   push:
-  
 jobs:
   cache:
     runs-on: ubuntu-latest

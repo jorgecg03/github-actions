@@ -24,7 +24,7 @@ jobs:
   slack-notification:
     needs: build
     runs-on: ubuntu-latest
-    if: ${{ needs.build.result == 'failure' }}
+    if: ${{ always() && needs.build.result == 'failure' }}
     steps:
         - name: Notify on failure
           uses: ./.github/actions/slack-notification
